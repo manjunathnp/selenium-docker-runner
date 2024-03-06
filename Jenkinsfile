@@ -13,6 +13,7 @@ pipeline{
         stage('Run Test'){
             steps{
                 sh "docker-compose -f test-suites.yaml up"
+                
             }            
         }                 
 
@@ -21,6 +22,8 @@ pipeline{
         always{
             sh "docker-compose -f grid.yaml down"
             sh "docker-compose -f test-suites.yaml down"
+            archiveArtifacts artifacts: 'docker-output/flight-reservation/emailable-report.html', followSymlinks: false
+            archiveArtifacts artifacts: 'docker-output/vendor-portal/emailable-report.html', followSymlinks: false
         }
     }
 
