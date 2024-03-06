@@ -1,4 +1,3 @@
-// approach 1
 pipeline{
 
     agent any
